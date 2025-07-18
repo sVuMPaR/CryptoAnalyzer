@@ -39,7 +39,8 @@ public class BruteForce {
         FileProcessor.writeToFile(outputPath, results.toString());
     }
 
-    // Brute force decryption for a string (returns all results)
+    // BruteForce decryption for a string (returns all results)
+    // Расшифровка строки методом полного перебора (возвращает все варианты)
     public static String bruteForceText(String encrypted) {
         StringBuilder results = new StringBuilder();
 
