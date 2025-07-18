@@ -22,6 +22,7 @@ public class FileProcessor {
             Path filePath = Path.of(filename);
 
             // If file does not exist, create default directory and file
+            // Если файл не существует, создаёт дефолтную директорию и файл
             if (Validation.notExists(filePath)) {
                 Path defaultDir = Path.of(System.getProperty("user.home"), "CryptoAnalyzerDefault");
                 if (Validation.notExists(defaultDir)) {
@@ -40,6 +41,7 @@ public class FileProcessor {
             List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
 
             // Check for empty file
+            // Проверка на пустой файл
             if (lines.isEmpty() || (lines.size() == 1 && lines.get(0).isEmpty())) {
                 throw new FileProcessingException("File is empty: " + filename);
             }
