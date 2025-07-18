@@ -9,49 +9,57 @@ public class ConsoleRunner {
         Scanner scanner = new Scanner(System.in);
 
         try {
-            System.out.println("Choose an option:");
-            System.out.println("1. Encrypt a file");
-            System.out.println("2. Decrypt a file");
-            System.out.println("3. Brute force decrypt a file");
-            System.out.print("Enter 1, 2, or 3: ");
+            System.out.println("Выберите опцию / Choose an option:");
+            System.out.println("1. Зашифровать файл / Encrypt a file");
+            System.out.println("2. Расшифровать файл / Decrypt a file");
+            System.out.println("3. Расшифровать файл методом перебора / Brute force decrypt a file");
+            System.out.print("Введите 1, 2 или 3 / Enter 1, 2, or 3: ");
             String optionInput = scanner.nextLine();
             int option;
+            // Check for right Option
+            //Проверка на правильность Option
             try {
                 option = Integer.parseInt(optionInput);
             } catch (NumberFormatException e) {
-                System.out.println("Invalid menu option! Exiting.");
+                System.out.println("Не правильное меню опции! Выходим. / Invalid menu option! Exiting.");
                 return;
             }
-
+            
+            // Check for inputPath
+            // Провека на правильность inputPath
             String inputPath;
             do {
                 System.out.print("Enter the path to the source file: ");
                 inputPath = scanner.nextLine();
                 if (!Validation.isValidPath(inputPath)) {
-                    System.out.println("Invalid file path! Please enter a valid path.");
+                    System.out.println("Не правильный путь к файлу! Пожалуйста введите правильный / Invalid file path! Please enter a valid path.");
                 }
             } while (!Validation.isValidPath(inputPath));
 
+            // Check for outputPath
+            // Провека на правильность outputPath
             String outputPath;
             do {
-                System.out.print("Enter the path to the destination file: ");
+                System.out.print("Введите путь к файлу в который хотите сохранить / Enter the path to the destination file: ");
                 outputPath = scanner.nextLine();
                 if (!Validation.isValidPath(outputPath)) {
-                    System.out.println("Invalid file path! Please enter a valid path.");
+                    System.out.println("Не правильный путь к файлу! Пожалуйста введите правильный / Invalid file path! Please enter a valid path.");
                 }
             } while (!Validation.isValidPath(outputPath));
 
+            // Check Option for options with key(shift)
+            // Проверка Option на опции с ключом
             int shift = 0;
             if (option == 1 || option == 2) {
                 boolean validShift = false;
                 while (!validShift) {
-                    System.out.print("Enter the shift value (integer): ");
+                    System.out.print("Введите ключ шифра(число) / Enter the shift value (integer): ");
                     String shiftInput = scanner.nextLine();
                     try {
                         shift = Integer.parseInt(shiftInput);
                         validShift = true;
                     } catch (NumberFormatException e) {
-                        System.out.println("Invalid number! Please enter a valid integer.");
+                        System.out.println("Не верное число! Введите верное / Invalid number! Please enter a valid integer.");
                     }
                 }
             }
@@ -59,26 +67,26 @@ public class ConsoleRunner {
             try {
                 if (option == 1) {
                     MainApp.encryptFile(inputPath, outputPath, shift);
-                    System.out.println("File encrypted successfully.");
+                    System.out.println("Шифрование файла успешно / File encrypted successfully.");
                 } else if (option == 2) {
                     MainApp.decryptFile(inputPath, outputPath, shift);
-                    System.out.println("File decrypted successfully.");
+                    System.out.println("Расшифровывание файла успешно / File decrypted successfully.");
                 } else if (option == 3) {
                     MainApp.bruteForceFile(inputPath, outputPath);
-                    System.out.println("Brute force decryption complete. Check the output file for all possible results.");
+                    System.out.println("Расшифровка методом перебора успешна. Проверьте все возможные варианты в файле / Brute force decryption complete. Check the output file for all possible results.");
                 } else {
-                    System.out.println("Invalid option selected.");
+                    System.out.println("Выьрана не верная опция / Invalid option selected.");
                 }
             } catch (FileProcessingException e) {
-                System.err.println("File error: " + e.getMessage());
+                System.err.println("Ошибка файла / File error: " + e.getMessage());
                 if (e.getDefaultFilePath() != null) {
-                    System.err.println("Default file created at: " + e.getDefaultFilePath());
+                    System.err.println("Дефолтный путь создан / Default file created at: " + e.getDefaultFilePath());
                 }
             } catch (RuntimeException e) {
-                System.err.println("Unexpected error: " + e.getMessage());
+                System.err.println("Не предвиденная ошибка / Unexpected error: " + e.getMessage());
             }
         } catch (Exception e) {
-            System.err.println("An unexpected error occurred: " + e.getMessage());
+            System.err.println("Возникла не предвиденная ошибка / An unexpected error occurred: " + e.getMessage());
             e.printStackTrace();
         } finally {
             scanner.close();
