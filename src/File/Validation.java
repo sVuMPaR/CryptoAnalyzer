@@ -9,10 +9,10 @@ import java.nio.file.InvalidPathException;
 
 public class Validation {
     /**
-     * Ensures the parent directory of the given file path exists.
-     * If it does not exist, it will be created.
-     * @param filePath The file path whose parent directory should be checked/created.
-     * @throws IOException if directory creation fails.
+     * Ensures the parent directory of the given file path exists. / Удостовериться, что директория файла существует.
+     * If it does not exist, it will be created. / Если не существует, то будет создана.
+     * @param filePath The file path whose parent directory should be checked/created. / @param filePath Путь к файлу, чья директория должная быть проверенна/создана.
+     * @throws IOException if directory creation fails. / @throws IOException, если создать директорию не возможно.
      */
     public static void ensureParentDirectoryExists(Path filePath) throws IOException {
         Path parent = filePath.getParent();
