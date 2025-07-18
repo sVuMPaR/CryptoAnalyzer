@@ -9,6 +9,7 @@ public class Encrypt {
     private static final int ASCII_RANGE = 128;
 
     // Encrypts a string
+    // Шифрует строку
     public static String encryptText(String text, int shift) {
         char[] chars = text.toCharArray();
 
@@ -32,6 +33,7 @@ public class Encrypt {
     }
 
     // Encrypts a file (reads, encrypts, returns encrypted string)
+    // Шифрует файл (считывает, шифрует, возвращает зашифрованную строку)
     public static String encryptFile(String filename, int shift) {
         List<String> lines = FileProcessor.readFile(filename);
         String content = String.join(System.lineSeparator(), lines);
