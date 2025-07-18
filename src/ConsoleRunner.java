@@ -58,13 +58,13 @@ public class ConsoleRunner {
 
             try {
                 if (option == 1) {
-                    Application.encryptFile(inputPath, outputPath, shift);
+                    MainApp.encryptFile(inputPath, outputPath, shift);
                     System.out.println("File encrypted successfully.");
                 } else if (option == 2) {
-                    Application.decryptFile(inputPath, outputPath, shift);
+                    MainApp.decryptFile(inputPath, outputPath, shift);
                     System.out.println("File decrypted successfully.");
                 } else if (option == 3) {
-                    Application.bruteForceFile(inputPath, outputPath);
+                    MainApp.bruteForceFile(inputPath, outputPath);
                     System.out.println("Brute force decryption complete. Check the output file for all possible results.");
                 } else {
                     System.out.println("Invalid option selected.");
