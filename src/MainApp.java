@@ -5,7 +5,11 @@ import Commands.Encrypt;
 import Commands.Decrypt;
 import java.util.List;
 
-public class Application {
+public class MainApp {
+        public static void main(String[] args) {
+        ConsoleRunner.main(args);
+    }
+    
     public static void encryptFile(String inputPath, String outputPath, int shift) {
         String encrypted = Encrypt.encrypt(inputPath, shift);
         FileProcessor.appendToFile(outputPath, encrypted);
